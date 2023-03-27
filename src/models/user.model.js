@@ -1,5 +1,5 @@
 const mongoose = require('mongoose'),
-Schema = mongoose.Schema;
+    Schema = mongoose.Schema;
 
 const userSchema = new Schema({
     fullName: {
@@ -28,10 +28,13 @@ const userSchema = new Schema({
         type: String,
         required: true
     },
-    createdAt: {
-        type: Date,
-        default: Date.now
+},
+    {
+        timestamps: {
+            createdAt: 'created_at', // Use `created_at` to store the created date
+            updatedAt: 'updated_at' // and `updated_at` to store the last updated date
+        }
     }
-});
+);
 
 module.exports = mongoose.model('User', userSchema);
