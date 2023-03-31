@@ -8,20 +8,27 @@ const storeSchema = new Schema({
         trim: true,
         required: [true, "name not provided "],
     },
-    description: {
+    phoneNumber: {
+        type: Number,
+        required: false,
+    },
+    address: {
         type: String,
         required: false,
     },
+    type: {
+        type: Number,
+        required: [true, "Please specify store type"]
+    },
     status: {
-        type: String,
-        enum: ["open", "closed"],
+        type: Boolean,
         required: [true, "Please specify store status"]
     },
 },
     {
         timestamps: {
-            createdAt: 'created_at', // Use `created_at` to store the created date
-            updatedAt: 'updated_at' // and `updated_at` to store the last updated date
+            createdAt: 'created_at',
+            updatedAt: 'updated_at'
         }
     }
 );
