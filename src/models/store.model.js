@@ -17,8 +17,8 @@ const storeSchema = new Schema({
         required: false,
     },
     type: {
-        type: Number,
-        required: [true, "Please specify store type"]
+        type: Schema.Types.ObjectId,
+        ref: "StoreType"
     },
     status: {
         type: Boolean,
