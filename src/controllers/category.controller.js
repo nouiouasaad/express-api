@@ -61,7 +61,7 @@ exports.update = (req, res) => {
 
     const id = req.params.id;
 
-    Category.findByIdAndUpdate(id, req.body, { useFindAndModify: false })
+    Category.findByIdAndUpdate(id, req.body)
         .then(data => {
             if (!data) {
                 res.status(404).send({
@@ -98,8 +98,11 @@ exports.delete = (req, res) => {
         });
 };
 
-exports.deleteAll = (req, res) => {
-    Category.deleteMany({})
+exports.deleteMany = (req, res) => {
+
+    ids = req.body.ids
+    
+    Category.deleteMany({_id:{$in:ids}})
         .then(data => {
             res.send({
                 message: `${data.deletedCount} Categorys were deleted successfully!`

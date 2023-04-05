@@ -4,8 +4,9 @@ const category = require('../controllers/category.controller')
 const router = express()
 
 router.post('/create', category.create)
-router.post('/update', category.update)
+router.put('/update/:id', category.update)
+
 router.get('/', category.findAll)
-router.post('/delete', category.delete)
+router.delete('/delete', category.deleteMany)
 
 module.exports = router
