@@ -7,6 +7,7 @@ const typeRoutes = require("./src/routes/type.routes");
 const orderRoutes = require("./src/routes/order.routes");
 const productRoutes = require("./src/routes/product.routes");
 const categoryRoutes = require("./src/routes/category.routes");
+const sizeRoutes = require("./src/routes/size.routes");
 
 const app = express();
 
@@ -20,5 +21,6 @@ app.use('/api/v1/types', typeRoutes);
 app.use('/api/v1/orders', orderRoutes);
 app.use('/api/v1/products', productRoutes);
 app.use('/api/v1/categories', categoryRoutes);
+app.use('/api/v1/sizes', sizeRoutes);
 
 module.exports = app;
