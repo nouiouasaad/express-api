@@ -18,6 +18,14 @@ const productSchema = new Schema({
         type: Boolean,
         required: [true, "Please specify store status"]
     },
+    description: {
+        type: String,
+    },
+    img:
+    {
+        data: Buffer,
+        contentType: String
+    }
 },
     {
         timestamps: {

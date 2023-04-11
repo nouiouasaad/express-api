@@ -1,6 +1,9 @@
 const Product = require('../models/product.model')
+let fs = require('fs');
+let path = require('path');
 
 exports.create = (req, res) => {
+    
     if (!req.body.name) {
         res.status(400).send({ message: "Content can not be empty!" });
         return;
@@ -9,7 +12,12 @@ exports.create = (req, res) => {
     const product = new Product({
         name: req.body.name,
         category: req.body.category_id,
-        status: req.body.status ? req.body.status : true
+        fescription: req.body.description,
+        status: req.body.status ? req.body.status : true,
+        img: {
+            data: req.file.filename,
+            contentType: 'image/png'
+        }
     });
 
     product.save(product)
