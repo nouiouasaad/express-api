@@ -24,6 +24,11 @@ const storeSchema = new Schema({
         type: Boolean,
         required: [true, "Please specify store status"]
     },
+    img:
+    {
+        data: Buffer,
+        contentType: String
+    }
 },
     {
         timestamps: {

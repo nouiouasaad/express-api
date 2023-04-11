@@ -1,6 +1,7 @@
 const Category = require('../models/category.model')
 
 exports.create = (req, res) => {
+    
     if (!req.body.name) {
         res.status(400).send({ message: "Content can not be empty!" });
         return;
@@ -61,39 +62,17 @@ exports.update = (req, res) => {
 
     const id = req.params.id;
 
-    Category.findByIdAndUpdate(id, req.body)
+    Category.findByIdAndUpdate(id, req.body, {new: true})
         .then(data => {
             if (!data) {
                 res.status(404).send({
                     message: `Cannot update Category with id=${id}. Maybe Category was not found!`
                 });
-            } else res.send({ message: "Category was updated successfully." });
+            } else res.send(data);
         })
         .catch(err => {
             res.status(500).send({
                 message: "Error updating Category with id=" + id
-            });
-        });
-};
-
-exports.delete = (req, res) => {
-    const id = req.params.id;
-
-    Category.findByIdAndRemove(id)
-        .then(data => {
-            if (!data) {
-                res.status(404).send({
-                    message: `Cannot delete Tutorial with id=${id}. Maybe Tutorial was not found!`
-                });
-            } else {
-                res.send({
-                    message: "Tutorial was deleted successfully!"
-                });
-            }
-        })
-        .catch(err => {
-            res.status(500).send({
-                message: "Could not delete Tutorial with id=" + id
             });
         });
 };
@@ -104,9 +83,7 @@ exports.deleteMany = (req, res) => {
     
     Category.deleteMany({_id:{$in:ids}})
         .then(data => {
-            res.send({
-                message: `${data.deletedCount} Categorys were deleted successfully!`
-            });
+            res.send(ids);
         })
         .catch(err => {
             res.status(500).send({
